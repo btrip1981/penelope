@@ -1,0 +1,6 @@
+Flask
+gunicorn
+jsonschema
+openai
+requests
+tenacity

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chat Application</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <style>
+ body {
+    background: url('https://i.ibb.co/T0qkgzT/penelope.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+#chatContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: -98px;
+}
+
+#chatbox {
+    height: 200px;
+    width: 300px;
+    margin-top: -101px;
+    margin-bottom: 15px;
+    margin-left: 292px;
+    overflow: auto;
+    border: 1px solid black;
+    padding-top: 3px;
+    padding-right: 3px;
+    padding-left: 3px;
+    padding-bottom: 3px;
+    background: rgba(255, 255, 255, 0.6); /* semi-transparent background */
+}
+
+.backgroundImage {
+    display: none;
+    background: url('https://i.ibb.co/T0qkgzT/penelope.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    flex: 1;
+    height: 100vh;
+}
+
+@media screen and (min-width: 768px) {
+    .backgroundImage {
+        display: block;
+    }
+.input{
+    width: 33%;
+    height: 25px;
+    border-radius: 5px;
+    border: 1px solid black;
+    padding: 10px;
+    margin-bottom: 50px;
+    margin-left: 290px;
+    position: relative;
+    margin-top: -166px;
+	opacity: .6;
+}
+#sendButton {
+    margin-top: -8px;
+    margin-right: 7px;
+    background-color: chartreuse;
+    color: white;
+    text-shadow: 1px 1px 1px black;
+    border-radius: 18px;
+    border-top-width: 0px;
+    min-width: 5px;
+}
+h1{
+    text-align: center;
+    font-size: 50px;
+    color: white;
+    }
+ h3{
+    text-align: center;
+    font-size: 30px;
+    color: white;
+    text-shadow: 2px 2px 2px black;
+    }
+    </style>
+</head>
+<body>
+<h1> Penelope,</h1><h3> The Sales Agent</h3>
+<div id="chatContainer">
+    <div id="chatbox">
+        <!-- Messages will be here -->
+    </div>
+    <div class="backgroundImage"></div>
+</div>
+
+    <input class="input" id="messageInput" type="text" placeholder="Type your message...">
+    <button id="sendButton">Send</button>
+
+    <script>
+        $(document).ready(function() {
+            $("#sendButton").click(function(){
+                var userInput = $("#messageInput").val();
+
+                if(userInput){
+                    $("#chatbox").append("<p class='user-message'>" + userInput + "</p>");
+
+                    $.ajax({
+                        url: '/sales',
+                        type: 'post',
+                        dataType: 'json',
+                        contentType: 'application/json',
+                        data: JSON.stringify({ "Body": userInput }),
+                        success: function(data) {
+                            var botResponse = data.message;
+                            $("#chatbox").append("<p class='bot-message'>" + botResponse + "</p>");
+                            $("#messageInput").val('');
+                            $('#chatbox').scrollTop($('#chatbox')[0].scrollHeight);
+                        },
+                        error: function(err) {
+                            console.error(err);
+                        }
+                    });
+                } else {
+                    alert("You must write something!");
+                }
+            });
+        });
+    </script>
+</body>
+</html>
