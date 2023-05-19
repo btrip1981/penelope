@@ -3,86 +3,79 @@
 <head>
     <title>Chat Application</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <style>
- body {
-    background: url('https://i.ibb.co/T0qkgzT/penelope.jpg') no-repeat center center fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
+   
+<style>
+body {
+  background: url('https://i.ibb.co/T0qkgzT/penelope.jpg') no-repeat center center fixed;
+  background-size: cover;
 }
 
 #chatContainer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: -98px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 #chatbox {
-    height: 200px;
-    width: 300px;
-    margin-top: -101px;
-    margin-bottom: 15px;
-    margin-left: 292px;
-    overflow: auto;
-    border: 1px solid black;
-    padding-top: 3px;
-    padding-right: 3px;
-    padding-left: 3px;
-    padding-bottom: 3px;
-    background: rgba(255, 255, 255, 0.6); /* semi-transparent background */
+  height: 200px;
+  width: 300px;
+  overflow: auto;
+  border: 1px solid black;
+  padding: 3px;
+  background: rgba(255, 255, 255, 0.6); /* semi-transparent background */
 }
 
 .backgroundImage {
-    display: none;
-    background: url('https://i.ibb.co/T0qkgzT/penelope.jpg') no-repeat center center fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-    flex: 1;
-    height: 100vh;
+  display: none;
+  background: url('https://i.ibb.co/T0qkgzT/penelope.jpg') no-repeat center center fixed;
+  background-size: cover;
+  flex: 1;
+  height: 100vh;
 }
 
 @media screen and (min-width: 768px) {
-    .backgroundImage {
-        display: block;
-    }
-.input{
-    width: 33%;
-    height: 25px;
-    border-radius: 5px;
-    border: 1px solid black;
-    padding: 10px;
-    margin-bottom: 50px;
-    margin-left: 290px;
-    position: relative;
-    margin-top: -166px;
-	opacity: .6;
+  .backgroundImage {
+    display: block;
+  }
 }
+
+.input {
+  width: 33%;
+  height: 25px;
+  border-radius: 5px;
+  border: 1px solid black;
+  padding: 10px;
+  margin-bottom: 0;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  opacity: 0.6;
+}
+
 #sendButton {
-    margin-top: -8px;
-    margin-right: 7px;
-    background-color: chartreuse;
-    color: white;
-    text-shadow: 1px 1px 1px black;
-    border-radius: 18px;
-    border-top-width: 0px;
-    min-width: 5px;
+  margin-top: 10px;
+  background-color: chartreuse;
+  color: white;
+  text-shadow: 1px 1px 1px black;
+  border-radius: 18px;
+  border-top-width: 0px;
+  min-width: 5px;
 }
-h1{
-    text-align: center;
-    font-size: 50px;
-    color: white;
-    }
- h3{
-    text-align: center;
-    font-size: 30px;
-    color: white;
-    text-shadow: 2px 2px 2px black;
-    }
-    </style>
+
+h1 {
+  text-align: center;
+  font-size: 50px;
+  color: white;
+}
+
+h3 {
+  text-align: center;
+  font-size: 30px;
+  color: white;
+  text-shadow: 2px 2px 2px black;
+}
+</style>
 </head>
 <body>
 <h1> Penelope,</h1><h3> The Sales Agent</h3>
