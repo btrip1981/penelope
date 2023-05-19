@@ -4,3 +4,4 @@ jsonschema
 openai
 requests
 tenacity
+flask-cors
