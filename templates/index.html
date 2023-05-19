@@ -97,34 +97,47 @@ h3 {
     <button id="sendButton">Send</button>
 
     <script>
-        $(document).ready(function() {
-            $("#sendButton").click(function(){
-                var userInput = $("#messageInput").val();
+  $(document).ready(function() {
+    // Send button click event
+    $("#sendButton").click(function(){
+        sendMessage();
+    });
 
-                if(userInput){
-                    $("#chatbox").append("<p class='user-message'>" + userInput + "</p>");
+    // Enter key event for the text input field
+    $("#messageInput").on('keyup', function (e) {
+        if (e.key == 'Enter' || e.keyCode == 13) {
+            // Trigger the send button click event
+            $("#sendButton").click();
+        }
+    });
+});
 
-                    $.ajax({
-                        url: '/sales',
-                        type: 'post',
-                        dataType: 'json',
-                        contentType: 'application/json',
-                        data: JSON.stringify({ "Body": userInput }),
-                        success: function(data) {
-                            var botResponse = data.message;
-                            $("#chatbox").append("<p class='bot-message'>" + botResponse + "</p>");
-                            $("#messageInput").val('');
-                            $('#chatbox').scrollTop($('#chatbox')[0].scrollHeight);
-                        },
-                        error: function(err) {
-                            console.error(err);
-                        }
-                    });
-                } else {
-                    alert("You must write something!");
-                }
-            });
+function sendMessage(){
+    var userInput = $("#messageInput").val();
+
+    if(userInput){
+        $("#chatbox").append("<p class='user-message'>" + userInput + "</p>");
+
+        $.ajax({
+            url: '/sales',
+            type: 'post',
+            dataType: 'json',
+            contentType: 'application/json',
+            data: JSON.stringify({ "Body": userInput }),
+            success: function(data) {
+                var botResponse = data.message;
+                $("#chatbox").append("<p class='bot-message'>" + botResponse + "</p>");
+                $("#messageInput").val('');
+                $('#chatbox').scrollTop($('#chatbox')[0].scrollHeight);
+            },
+            error: function(err) {
+                console.error(err);
+            }
         });
-    </script>
+    } else {
+        alert("You must write something!");
+    }
+}
+  </script>
 </body>
 </html>
