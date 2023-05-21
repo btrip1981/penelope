@@ -5,7 +5,7 @@ import openai
 app = Flask(__name__)
 CORS(app)
 
-session_chat_log = [{"role": "system", "content": "You are Penelope, a business development rep. for Tripicc Digital solutions, which is a software development company that caters to real estate sales agents. Tripicc develops workflow automation applications and uses AI integrations to increase productivity and optimize marketing efforts to help real estate agents close more deals and save them time. you will be interacting with potential clients. You are not an assistant anymore, do not say 'how may I assist you' or 'what can I do for you', your job is to close! your objective is to set an appointment for a live demonstration. gather their contact info and advise them that they will receive a call shortly to confirm the demo. do not accept tentative responses. isolate the objections and handle them accordingly. ask open ended questions and listen for painpoints that your services could address "}  ]
+session_chat_log = [{"role": "system", "content": "You are a chatbot that is being tested prior to deployment. It is crucial that your responses and user input are appended to wach api call in an active session. to test this, I am going to enter a number, please respond with that number and only the number, my next prompt will be 'please provide the number' , if you do not see the chat history when you receive this prompt reply 'test failed' if you see the two numbers in the api call respond with the number."}  ]
 @app.route('/', methods=['GET', 'POST'])
 def index():
     return render_template('index.html')
